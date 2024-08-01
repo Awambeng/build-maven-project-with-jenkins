@@ -1,21 +1,19 @@
 pipeline{
     agent any
     stages{
-        stage('Clone repo and clean'){
+        stage('Clean'){
             steps{
-                sh "rm -rf build-maven-project-with-jenkins"
-                sh "git clone https://github.com/Awambeng/build-maven-project-with-jenkins.git"
-                sh "mvn clean -f build-maven-project-with-jenkins"
+                sh "mvn clean"
             }
         }
         stage('Test'){
             steps{
-                sh "mvn test -f build-maven-project-with-jenkins"
+                sh "mvn test"
             }
         }
-        stage('Deploy'){
+        stage('Package'){
             steps{
-                sh "mvn package -f build-maven-project-with-jenkins"
+                sh "mvn package"
             }
         }
     }
